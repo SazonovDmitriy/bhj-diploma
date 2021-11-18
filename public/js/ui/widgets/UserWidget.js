@@ -12,7 +12,10 @@ class UserWidget {
    * необходимо выкинуть ошибку.
    * */
   constructor(element){
-
+    if (!element) {
+      throw new Error('Ошибка, элемент не существует');
+    }
+    this.element = element;
   }
 
   /**
@@ -23,6 +26,10 @@ class UserWidget {
    * авторизованного пользователя
    * */
   update(){
-
+    const user = user.current();
+    if (user) {
+      const userName = this.element.querySelector('.user-name');
+      userName.textContent = user.name;
+    }
   }
 }

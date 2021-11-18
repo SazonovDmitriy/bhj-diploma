@@ -4,38 +4,50 @@
  * */
 const createRequest = (options = {}) => {
     const xhr = new XMLHttpRequest();
-    let url = options.url;
-    const data = options.data;
-    const formData = new FormData();
-    const method = options.method;
-        url += '?';
-        xhr.withCredentials;
-        xhr.responseType = 'json';
-            for (let key in data) {
-                url += key + "=" + data[key] + "&";
-            };
-        url.slice(0, -1);
-            try {
-                xhr.open(method, url);
-                xhr.send();
-            } catch (e) {
-                options.callback(e);
-            };
-        for (let key in options.data) {
-            formData.append(key, options.data[key]);
-        }
-    try {
-        xhr.open(method, url);
-        xhr.send(formData);
-    } catch (e) {
-        options.callback(e);
-    }
-    xhr.addEventListener("readystatechange", () => {
-        if (xhr.readyState === xhr.DONE && xhr.status === 200) {
-            const error = null;
-            const response = xhr.response;
-            options.callback(error, response);
-        };
-    });
-    return xhr;
+    xhr.withCredentials = true;
+    xhr.responseType = options.responseType;
+
+   if (options.method === 'GET') {
+       let url = options.url;
+       if (options.data) {
+           url += '?';
+           let data = options.data;
+           for (let key in data) {
+               url += key + '=' + data[key] + '&';
+           }
+           url = url.slice(0, -1);
+       }
+
+       try {
+           if (url) {
+               xhr.open(options.method, url);
+               xhr.send();
+           }
+       } catch (e) {
+           options.callback(e);
+       }
+   } else {
+       let formData = new FormData();
+
+       for (let key in options.data) {
+           formData.append(key, options.data[key]);
+       }
+
+       try {
+           xhr.open(options.method, options.url);
+           xhr.send(formData);
+       } catch (e) {
+           options.callback(e);
+       }
+   }
+
+   xhr.addEventListener('readystatechange', () => {
+       if (xhr.readyState === xhr.DONE && xhr.status === 200) {
+           let err = null;
+           let response = xhr.response;
+           options.callback(err, response);
+       }
+   });
+
+   return xhr;
 };
