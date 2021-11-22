@@ -25,9 +25,9 @@ class Modal {
    * (с помощью метода Modal.onClose)
    * */
   registerEvents() {
-    this.closeBtnArr = this.element.querySelectorAdd('button[data-dismiss="modal"]');
-    for (let closeBtn of closeBtnArr) {
-      closeBtn.addEventListener('click', () => this.onClose(e));
+    this.closeBtnArr = this.element.querySelectorAll('button[data-dismiss="modal"]');
+    for (let closeBtn of this.closeBtnArr) {
+      closeBtn.addEventListener('click', (e) => this.onClose(e));
     }
   }
 
