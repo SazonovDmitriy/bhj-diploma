@@ -30,7 +30,7 @@ class AsyncForm {
         return;
       };
       e.preventDefault();
-      this.submit();
+      this.onSubmit();
     })
   }
 
@@ -59,7 +59,7 @@ class AsyncForm {
    * данные, полученные из метода getData()
    * */
   submit() {
-    const data = this.Data();
+    const data = this.getData();
     this.onSubmit(data);
   }
 }

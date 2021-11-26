@@ -31,7 +31,7 @@ class TransactionsWidget {
     });
     newExpenseBtn.addEventListener('click', (e) => {
       e.preventDefault();
-      let newExpense = App.getModal('newEpenxe');
+      let newExpense = App.getModal('newExpense');
       newExpense.open();
     });
   }

@@ -26,7 +26,7 @@ class UserWidget {
    * авторизованного пользователя
    * */
   update(){
-    const user = user.current();
+    const user = User.current();
     if (user) {
       const userName = this.element.querySelector('.user-name');
       userName.textContent = user.name;
