@@ -30,7 +30,7 @@ class AsyncForm {
         return;
       };
       e.preventDefault();
-      this.onSubmit();
+      this.submit();
     })
   }
 
@@ -42,7 +42,7 @@ class AsyncForm {
    * }
    * */
   getData() {
-    const formData = new formData(this.element);
+    const formData = new FormData(this.element);
     let formDataObj = {};
     for (let [key, value] of formData.entries()) {
       formDataObj[key] = value;
