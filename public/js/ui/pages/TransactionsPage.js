@@ -137,7 +137,7 @@ class TransactionsPage {
    * в формат «10 марта 2019 г. в 03:20»
    * */
   formatDate(date){
-    const newDate = new Date(date);
+    let newDate = new Date(date),
     day = newDate.getDate(),
     year = newDate.getFullYear(),
     months = [
@@ -195,7 +195,7 @@ class TransactionsPage {
    * используя getTransactionHTML
    * */
   renderTransactions(data){
-    const content = document.querySelector('.content');
+    let content = document.querySelector('.content');
     const itemsHTML = data.reverse().map(this.getTransactionHTML.bind(this)).join('');
     content.innerHTML = `<div class="transactions-content">${itemsHTML}</div>`;
   }

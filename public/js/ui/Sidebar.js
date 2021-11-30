@@ -3,7 +3,7 @@
  * кнопки скрытия/показа колонки в мобильной версии сайта
  * и за кнопки меню
  * */
-class Sidebar {
+ class Sidebar {
   /**
    * Запускает initAuthLinks и initToggleButton
    * */
@@ -18,13 +18,13 @@ class Sidebar {
    * при нажатии на кнопку .sidebar-toggle
    * */
   static initToggleButton() {
-    let sidebarMini = document.querySelector(".sidebar-mini");
-    let sidebarToggle = document.querySelector(".sidebar-toggle");
-    sidebarToggle.addEventListener("click", (e) => {
-      e.preventDefault();
-      sidebarMini.classList.toggle("sidebar-open");
-      sidebarMini.classList.toggle("sidebar-collapse");
-    });
+    const sidebarMini = document.querySelector('.sidebar-mini');
+    const sidebarToggle = document.querySelector('.sidebar-toggle');
+    sidebarToggle.addEventListener('click', (event) => {
+      event.preventDefault();
+      sidebarMini.classList.toggle('sidebar-open');
+      sidebarMini.classList.toggle('sidebar-collapse');
+    })
   }
 
   /**
@@ -35,11 +35,11 @@ class Sidebar {
    * выходу устанавливает App.setState( 'init' )
    * */
   static initAuthLinks() {
-    const registerBtn = document.querySelector('.menu-item_register a');
-    const loginBtn = document.querySelector('.menu-item_login a');
-    const logoutBtn = document.querySelector('.menu-item_logout a');
-    const registerModal = App.getModal('register');
-    const loginModal = App.getModal('login');
+    const registerBtn = document.querySelector('.menu-item_register a'),
+    loginBtn = document.querySelector('.menu-item_login a'),
+    logoutBtn = document.querySelector('.menu-item_logout a'),
+    registerModal = App.getModal('register'),
+    loginModal = App.getModal('login');
 
     registerBtn.addEventListener('click', (e) => {
       e.preventDefault();
@@ -55,9 +55,9 @@ class Sidebar {
       e.preventDefault();
       User.logout((err, response) => {
         if (response && response.success) {
-          App.setState('init');
+          App.setState( 'init' );
         }
       });
     });
   }
-}
+  }

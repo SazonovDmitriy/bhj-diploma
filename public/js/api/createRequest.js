@@ -3,7 +3,7 @@
  * на сервер.
  * */
 const createRequest = (options = {}) => {
-    const xhr = new XMLHttpRequest();
+    let xhr = new XMLHttpRequest();
     xhr.withCredentials = true;
     xhr.responseType = options.responseType;
 
@@ -20,7 +20,7 @@ const createRequest = (options = {}) => {
 
        try {
            if (url) {
-               xhr.open(options.method, url);
+               xhr.open(options.method, url, true);
                xhr.send();
            }
        } catch (e) {
@@ -34,7 +34,7 @@ const createRequest = (options = {}) => {
        }
 
        try {
-           xhr.open(options.method, options.url);
+           xhr.open(options.method, options.url, true);
            xhr.send(formData);
        } catch (e) {
            options.callback(e);
