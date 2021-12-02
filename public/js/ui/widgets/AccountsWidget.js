@@ -124,6 +124,6 @@ class AccountsWidget {
    * */
   renderItem(data){
     let accountHTML = this.getAccountHTML(data);
-    this.element.innertAdjacentHTML('beforeEnd', accountHTML);
+    this.element.insertAdjacentHTML('beforeEnd', accountHTML);
   }
 }
